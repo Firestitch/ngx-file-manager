@@ -1,0 +1,74 @@
+.example-tree-progress-bar {
+  margin-left: 30px;
+}
+
+.tree-container {
+
+  .name {
+    margin-left: 5px;
+  }
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+
+  .actions {
+    display: flex;
+
+    button {
+      margin-left: 8px;
+    }
+  }
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex: 1;
+
+  .root {
+    padding-left: 7px;
+  }
+
+  .home {
+    display: flex;
+  }
+
+  .path-parts {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    .path-part {
+      font-size: 16px;
+      padding-left: 7px;
+      cursor: pointer;
+      &:before {
+        content: '/';
+        padding-right: 7px;
+      }
+
+      &:first-child:before {
+        padding-right: 0;
+        content: ''
+      }
+    }
+  }
+}
+
+fs-list {
+  .name-container {
+
+    mat-icon {
+      padding-right: 7px;
+    }
+
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}

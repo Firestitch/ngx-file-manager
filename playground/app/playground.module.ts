@@ -6,7 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FsExampleModule } from '@firestitch/example';
 import { FsMessageModule } from '@firestitch/message';
-import { FsComponentModule } from '@firestitch/package';
+import { FsFileManagerModule } from '@firestitch/package';
+import { FsApiModule } from '@firestitch/api';
 import { FsLabelModule } from '@firestitch/label';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -17,6 +18,10 @@ import {
 } from './components';
 import { AppComponent } from './app.component';
 import { KitchenSinkConfigureComponent } from './components/kitchen-sink-configure';
+import { FsListModule } from '@firestitch/list';
+import { FsScrollModule } from '@firestitch/scroll';
+import { FsSelectionModule } from '@firestitch/selection';
+import { FsFileModule } from '@firestitch/file';
 
 const routes: Routes = [
   { path: '', component: ExamplesComponent },
@@ -26,7 +31,7 @@ const routes: Routes = [
   bootstrap: [ AppComponent ],
   imports: [
     BrowserModule,
-    FsComponentModule,
+    FsFileManagerModule.forRoot(),
     BrowserAnimationsModule,
     AppMaterialModule,
     FormsModule,
@@ -35,6 +40,11 @@ const routes: Routes = [
     FsMessageModule.forRoot(),
     ToastrModule.forRoot({ preventDuplicates: true }),
     RouterModule.forRoot(routes),
+    FsApiModule.forRoot(),
+    FsListModule.forRoot(),
+    FsScrollModule.forRoot(),
+    FsSelectionModule.forRoot(),
+    FsFileModule.forRoot(),
   ],
   entryComponents: [
     KitchenSinkConfigureComponent

@@ -2,4 +2,7 @@
  * Public API Surface of fs-menu
  */
 
-export { FsComponentModule } from './app/fs-component.module';
+export { FsFileManagerModule } from './app/fs-file-manager.module';
+
+export { FsFileManagerFile } from './app/interfaces/file-manager-file';
+export { FsFileManagerConfig } from './app/interfaces/file-manager-config';
