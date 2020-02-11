@@ -1,20 +1,23 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {  MatTreeModule,
-          MatIconModule,
-          MatProgressBarModule,
-          MatButtonModule } from '@angular/material';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatButtonModule } from '@angular/material/button';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { FsListModule } from '@firestitch/list';
 import { FsScrollModule } from '@firestitch/scroll';
 import { FsMenuModule } from '@firestitch/menu';
 
-import { FsFileManagerComponent } from './components/file-manager/file-manager.component';
 import { FsSelectionModule } from '@firestitch/selection';
 import { FsDateModule } from '@firestitch/date';
 import { FsPromptModule } from '@firestitch/prompt';
 import { FsFileModule } from '@firestitch/file';
+
+import { FsFileManagerComponent } from './components/file-manager/file-manager.component';
+
 
 @NgModule({
   imports: [
@@ -40,7 +43,7 @@ import { FsFileModule } from '@firestitch/file';
   ],
 })
 export class FsFileManagerModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<FsFileManagerModule> {
     return {
       ngModule: FsFileManagerModule
     };
