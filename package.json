@@ -2,7 +2,7 @@
   "name": "@firestitch/file-manager",
   "title": "File Manager",
   "description": "@firestitch/file-manager",
-  "version": "9.0.0",
+  "version": "9.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/Firestitch/ngx-package"
@@ -64,9 +64,10 @@
     "@firestitch/prompt": "^8.3.0",
     "@firestitch/scroll": "^8.0.0",
     "@firestitch/scroll-picker": "^8.0.0",
-    "@firestitch/selectbutton": "8.0.0",
-    "@firestitch/selection": "^8.0.0",
+    "@firestitch/selectbutton": "8.1.0",
+    "@firestitch/selection": "^9.1.0",
     "@firestitch/store": "^8.0.0",
+    "@firestitch/badge": "^8.0.0",
     "codelyzer": "^5.2.1",
     "cpx": "^1.5.0",
     "date-fns": "2.9.0",

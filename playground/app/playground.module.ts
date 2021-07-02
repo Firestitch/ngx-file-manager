@@ -36,6 +36,7 @@ const routes: Routes = [
     AppMaterialModule,
     FormsModule,
     FsLabelModule,
+    FsSelectionModule,
     FsExampleModule.forRoot(),
     FsMessageModule.forRoot(),
     ToastrModule.forRoot({ preventDuplicates: true }),
@@ -43,7 +44,6 @@ const routes: Routes = [
     FsApiModule.forRoot(),
     FsListModule.forRoot(),
     FsScrollModule.forRoot(),
-    FsSelectionModule.forRoot(),
     FsFileModule.forRoot(),
   ],
   entryComponents: [

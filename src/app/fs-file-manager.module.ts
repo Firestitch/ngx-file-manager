@@ -29,7 +29,7 @@ import { FsFileManagerComponent } from './components/file-manager/file-manager.c
     FlexLayoutModule,
     FsListModule,
     FsScrollModule,
-    FsSelectionModule.forRoot(),
+    FsSelectionModule,
     FsMenuModule,
     FsDateModule,
     FsPromptModule,
