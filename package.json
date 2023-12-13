@@ -2,7 +2,7 @@
   "name": "@firestitch/file-manager",
   "title": "File Manager",
   "description": "@firestitch/file-manager",
-  "version": "12.0.0",
+  "version": "12.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/Firestitch/ngx-package"
@@ -72,6 +72,7 @@
     "@firestitch/selection": "^12.0.5",
     "@firestitch/skeleton": "^12.0.0",
     "@firestitch/store": "^12.1.1",
+    "@firestitch/transfer": "^12.0.1",
     "date-fns": "^2.28.0",
     "lodash-es": "^4.17.15",
     "rxjs": "^6.5.4",

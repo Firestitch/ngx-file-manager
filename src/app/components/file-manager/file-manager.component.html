@@ -1,9 +1,9 @@
 <div class="toolbar">
   <div class="status">
-    <a (click)="fetch('')" href="javascript:;" class="home"><mat-icon>home</mat-icon></a>
+    <a (click)="openDir('')" href="javascript:;" class="home"><mat-icon>home</mat-icon></a>
     <div class="root">/</div>
     <div class="path-parts">
-      <a class="path-part" (click)="fetchPathPart(i)" *ngFor="let pathPart of pathParts; let i = index">{{pathPart}}</a>
+      <a class="path-part" (click)="fetchPathPart(i)" *ngFor="let pathPart of path; let i = index">{{pathPart}}</a>
     </div>
   </div>
 
@@ -13,36 +13,38 @@
         <mat-icon>cloud_upload</mat-icon>
       </button>
     </fs-file>
-
+    <button mat-mini-fab (click)="downloadZip(path.join('/'))">
+      <mat-icon>cloud_download</mat-icon>
+    </button>
     <button mat-mini-fab (click)="createDirectory()">
       <mat-icon>create_new_folder</mat-icon>
     </button>
-
-    <button mat-mini-fab (click)="refresh()">
+    <button mat-mini-fab (click)="reload()">
       <mat-icon>refresh</mat-icon>
     </button>
   </div>
 </div>
 
 <fs-list [config]="listConfig" #list>
-
-  <fs-list-column>
+  <fs-list-column class="col-name">
     <ng-template fs-list-header>
       Name
     </ng-template>
     <ng-template fs-list-cell let-item="row">
-      <ng-container *ngIf="item.type==='directory'">
-        <a (click)="fetch(path + '/' + item.name)" class="name-container">
+      <div class="name">
+        <ng-container *ngIf="item.type==='directory'">
           <mat-icon>folder</mat-icon>
-          {{item.name}}
-        </a>
-      </ng-container>
-      <ng-container *ngIf="item.type==='file'">
-        <a href="javascript:;" class="name-container" (click)="download(item)">
-          <mat-icon>insert_drive_file</mat-icon>
-          <div>{{item.name}}</div>
-        </a>
-      </ng-container>
+          <a (click)="openDir(path.join('/') + '/' + item.name)" class="name-container">
+            {{item.name}}
+          </a>
+        </ng-container>
+        <ng-container *ngIf="item.type==='file'">
+          <mat-icon>{{item.mimeTypeImage ? 'image' : 'insert_drive_file'}}</mat-icon>
+          <a href="javascript:;" class="name-container" (click)="download(item)">          
+            <div>{{item.name}}</div>
+          </a>
+        </ng-container>
+      </div>
     </ng-template>
   </fs-list-column>
   <fs-list-column>
@@ -51,7 +53,7 @@
     </ng-template>
     <ng-template fs-list-cell let-item="row">
       <ng-container *ngIf="item.type==='file'">
-        {{item.size}}
+        {{item.size | fsFormatBytes}}
       </ng-container>
     </ng-template>
   </fs-list-column>
@@ -63,27 +65,6 @@
       <ng-container *ngIf="item.type==='file'">
         {{item.modified | fsDateFormat: 'date-time' }}
       </ng-container>
-    </ng-template>
-  </fs-list-column>
-  <fs-list-column width="1%">
-    <ng-template fs-list-header>
-
-    </ng-template>
-    <ng-template fs-list-cell let-item="row">
-      <fs-menu>
-        <ng-template
-          *ngIf="item.type==='file'"
-          fs-menu-item
-          (click)="deleteFile(item)">
-            Delete
-        </ng-template>
-        <ng-template
-          *ngIf="item.type==='directory'"
-          fs-menu-item
-          (click)="deleteDirectory(item)">
-            Delete
-        </ng-template>
-      </fs-menu>
     </ng-template>
   </fs-list-column>
 </fs-list>

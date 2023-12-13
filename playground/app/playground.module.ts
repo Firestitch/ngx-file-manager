@@ -1,25 +1,28 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 
 import { FsApiModule } from '@firestitch/api';
 import { FsExampleModule } from '@firestitch/example';
-import { FsLabelModule } from '@firestitch/label';
-import { FsMessageModule } from '@firestitch/message';
-import { FsFileManagerModule } from '@firestitch/package';
-
 import { FsFileModule } from '@firestitch/file';
+import { FsLabelModule } from '@firestitch/label';
 import { FsListModule } from '@firestitch/list';
+import { FsMessage, FsMessageModule } from '@firestitch/message';
+import { FsFileManagerModule } from '@firestitch/package';
 import { FsScrollModule } from '@firestitch/scroll';
 import { FsSelectionModule } from '@firestitch/selection';
+import { FS_TRANSFER_HANDLER } from '@firestitch/transfer';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AppComponent } from './app.component';
 import {
   ExamplesComponent,
-  KitchenSinkComponent
+  KitchenSinkComponent,
 } from './components';
 import { KitchenSinkConfigureComponent } from './components/kitchen-sink-configure';
+import { TransferHandler } from './handlers/transfer.handler';
 import { AppMaterialModule } from './material.module';
 
 const routes: Routes = [
@@ -44,14 +47,18 @@ const routes: Routes = [
     FsScrollModule.forRoot(),
     FsFileModule.forRoot(),
   ],
-  entryComponents: [
-    KitchenSinkConfigureComponent
-  ],
   declarations: [
     AppComponent,
     ExamplesComponent,
     KitchenSinkComponent,
-    KitchenSinkConfigureComponent
+    KitchenSinkConfigureComponent,
+  ],
+  providers: [
+    {
+      provide: FS_TRANSFER_HANDLER,
+      useClass: TransferHandler,
+      deps: [FsMessage],
+    },
   ],
 })
 export class PlaygroundModule {

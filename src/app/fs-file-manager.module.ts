@@ -1,20 +1,21 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTreeModule } from '@angular/material/tree';
-import { MatIconModule } from '@angular/material/icon';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatButtonModule } from '@angular/material/button';
-
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { FsListModule } from '@firestitch/list';
-import { FsScrollModule } from '@firestitch/scroll';
-import { FsMenuModule } from '@firestitch/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTreeModule } from '@angular/material/tree';
 
-import { FsSelectionModule } from '@firestitch/selection';
+
+import { FsCommonModule } from '@firestitch/common';
 import { FsDateModule } from '@firestitch/date';
-import { FsPromptModule } from '@firestitch/prompt';
 import { FsFileModule } from '@firestitch/file';
+import { FsListModule } from '@firestitch/list';
+import { FsMenuModule } from '@firestitch/menu';
+import { FsPromptModule } from '@firestitch/prompt';
+import { FsScrollModule } from '@firestitch/scroll';
+import { FsSelectionModule } from '@firestitch/selection';
 
 import { FsFileManagerComponent } from './components/file-manager/file-manager.component';
 
@@ -22,18 +23,22 @@ import { FsFileManagerComponent } from './components/file-manager/file-manager.c
 @NgModule({
   imports: [
     CommonModule,
+
+    FlexLayoutModule,
+
     MatTreeModule,
     MatIconModule,
     MatProgressBarModule,
     MatButtonModule,
-    FlexLayoutModule,
+
     FsListModule,
     FsScrollModule,
     FsSelectionModule,
     FsMenuModule,
     FsDateModule,
     FsPromptModule,
-    FsFileModule
+    FsFileModule,
+    FsCommonModule,
   ],
   exports: [
     FsFileManagerComponent,
@@ -45,7 +50,7 @@ import { FsFileManagerComponent } from './components/file-manager/file-manager.c
 export class FsFileManagerModule {
   static forRoot(): ModuleWithProviders<FsFileManagerModule> {
     return {
-      ngModule: FsFileManagerModule
+      ngModule: FsFileManagerModule,
     };
   }
 }
