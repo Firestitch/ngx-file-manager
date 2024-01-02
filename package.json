@@ -2,7 +2,7 @@
   "name": "@firestitch/file-manager",
   "title": "File Manager",
   "description": "@firestitch/file-manager",
-  "version": "12.1.0",
+  "version": "12.2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/Firestitch/ngx-package"
@@ -34,7 +34,6 @@
     "@angular/compiler": "^12.2.16",
     "@angular/compiler-cli": "^12.2.16",
     "@angular/core": "^12.2.16",
-    "@angular/flex-layout": "^12.0.0-beta.35",
     "@angular/forms": "^12.2.16",
     "@angular/material": "^12.2.13",
     "@angular/platform-browser": "^12.2.16",
@@ -71,6 +70,7 @@
     "@firestitch/selectbutton": "^12.0.3",
     "@firestitch/selection": "^12.0.5",
     "@firestitch/skeleton": "^12.0.0",
+    "@firestitch/style": "^12.3.3",
     "@firestitch/store": "^12.1.1",
     "@firestitch/transfer": "^12.0.1",
     "date-fns": "^2.28.0",

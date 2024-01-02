@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,8 +23,6 @@ import { FsFileManagerComponent } from './components/file-manager/file-manager.c
   imports: [
     CommonModule,
 
-    FlexLayoutModule,
-
     MatTreeModule,
     MatIconModule,
     MatProgressBarModule,
@@ -48,7 +45,7 @@ import { FsFileManagerComponent } from './components/file-manager/file-manager.c
   ],
 })
 export class FsFileManagerModule {
-  static forRoot(): ModuleWithProviders<FsFileManagerModule> {
+  public static forRoot(): ModuleWithProviders<FsFileManagerModule> {
     return {
       ngModule: FsFileManagerModule,
     };
