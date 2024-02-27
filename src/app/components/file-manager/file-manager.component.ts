@@ -38,7 +38,6 @@ export class FsFileManagerComponent implements OnInit, OnDestroy {
     private _cdRef: ChangeDetectorRef,
   ) { }
 
-
   public openDir(path) {
     this._router.navigate([], {
       queryParams: {
@@ -67,7 +66,9 @@ export class FsFileManagerComponent implements OnInit, OnDestroy {
         this._cdRef.markForCheck();
       });
 
-    this.path = (this._route.snapshot.queryParams.dir || '').split('/');
+    this.path = (this._route.snapshot.queryParams.dir || '')
+      .replace(/(^\/|\/$)/,'')
+      .split('/');
 
     this.listConfig = {
       rowActions: [

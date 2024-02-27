@@ -40,9 +40,7 @@
         </ng-container>
         <ng-container *ngIf="item.type==='file'">
           <mat-icon>{{item.mimeTypeImage ? 'image' : 'insert_drive_file'}}</mat-icon>
-          <a href="javascript:;" class="name-container" (click)="download(item)">          
-            <div>{{item.name}}</div>
-          </a>
+          {{item.name}}
         </ng-container>
       </div>
     </ng-template>
