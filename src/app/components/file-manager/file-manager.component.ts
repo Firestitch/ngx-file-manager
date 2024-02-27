@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
+import { FsClipboard } from '@firestitch/clipboard';
 import { FsFile } from '@firestitch/file';
 import { FsListComponent, FsListConfig } from '@firestitch/list';
 import { FsPrompt } from '@firestitch/prompt';
@@ -36,6 +37,7 @@ export class FsFileManagerComponent implements OnInit, OnDestroy {
     private _router: Router,
     private _route: ActivatedRoute,
     private _cdRef: ChangeDetectorRef,
+    private _clipboard: FsClipboard,
   ) { }
 
   public openDir(path) {
@@ -72,6 +74,13 @@ export class FsFileManagerComponent implements OnInit, OnDestroy {
 
     this.listConfig = {
       rowActions: [
+        {
+          label: 'Copy URL',
+          show: (item) => item.type === 'file' && item.url,
+          click: (item) => {
+            this._clipboard.copy(item.url)
+          },
+        },
         {
           label: 'Download',
           show: (item) => item.type === 'file',
