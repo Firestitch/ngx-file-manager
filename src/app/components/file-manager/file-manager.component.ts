@@ -117,7 +117,7 @@ export class FsFileManagerComponent implements OnInit, OnDestroy {
               const data = response
                 .map((item: any) => ({
                   ...item,
-                  mimeTypeImage: item.mimeType.match(/^image/),
+                  mimeTypeImage: item.mimeType?.match(/^image/),
                 }));
 
               return { data };
