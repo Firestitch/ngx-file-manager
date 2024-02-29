@@ -7,7 +7,7 @@ import { FsListComponent, FsListConfig } from '@firestitch/list';
 import { FsPrompt } from '@firestitch/prompt';
 
 import { Subject } from 'rxjs';
-import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
+import { filter, map, switchMap, takeUntil, tap } from 'rxjs/operators';
 
 import { FsFileManagerConfig } from '../../interfaces/file-manager-config';
 
@@ -139,14 +139,20 @@ export class FsFileManagerComponent implements OnInit, OnDestroy {
     this._prompt.input({
       title: 'Create Folder',
       required: true,
-      template: 'Please specify the directory name',
+      template: 'Please specify the folder name',
     })
       .pipe(
-        switchMap((name) => this.config.createDirectory(`${this.pathString}/${name}`)),
+        switchMap((name) => {
+          const dir = `${this.pathString}/${name}`;
+          return this.config.createDirectory(dir)
+            .pipe(
+              tap(() => {
+                this.openDir(dir);
+              })
+            );            
+        })
       )
-      .subscribe(() => {
-        this.reload();
-      });
+      .subscribe();
   }
 
   public deleteFile(item) {
@@ -187,7 +193,7 @@ export class FsFileManagerComponent implements OnInit, OnDestroy {
   public deleteDirectory(item) {
     this._prompt.confirm({
       title: 'Confirm',
-      template: 'Are you sure you would like to delete this directory?',
+      template: 'Are you sure you would like to delete this folder?',
     })
       .pipe(
         switchMap(() => this.config.deleteDirectory(`${this.pathString}/${item.name}`)),
