@@ -2,7 +2,7 @@
   "name": "@firestitch/file-manager",
   "title": "File Manager",
   "description": "@firestitch/file-manager",
-  "version": "13.0.0",
+  "version": "13.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/Firestitch/ngx-package"

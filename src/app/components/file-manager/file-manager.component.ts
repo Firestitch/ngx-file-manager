@@ -138,10 +138,11 @@ export class FsFileManagerComponent implements OnInit, OnDestroy {
   public createDirectory() {
     this._prompt.input({
       title: 'Create Folder',
+      required: true,
       template: 'Please specify the directory name',
     })
       .pipe(
-        switchMap(() => this.config.createDirectory(`${this.pathString}/${name}`)),
+        switchMap((name) => this.config.createDirectory(`${this.pathString}/${name}`)),
       )
       .subscribe(() => {
         this.reload();
