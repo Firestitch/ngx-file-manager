@@ -16,6 +16,7 @@ import { FS_TRANSFER_HANDLER } from '@firestitch/transfer';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { DragulaModule } from 'ng2-dragula';
 import { AppComponent } from './app.component';
 import {
   ExamplesComponent,
@@ -46,6 +47,7 @@ const routes: Routes = [
     FsListModule.forRoot(),
     FsScrollModule.forRoot(),
     FsFileModule.forRoot(),
+    DragulaModule.forRoot(),
   ],
   declarations: [
     AppComponent,

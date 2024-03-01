@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 import { FsClipboard } from '@firestitch/clipboard';
 import { FsFile } from '@firestitch/file';
+import { FsGallery, FsGalleryItem } from '@firestitch/gallery';
 import { FsListComponent, FsListConfig } from '@firestitch/list';
 import { FsPrompt } from '@firestitch/prompt';
 
@@ -38,7 +39,25 @@ export class FsFileManagerComponent implements OnInit, OnDestroy {
     private _route: ActivatedRoute,
     private _cdRef: ChangeDetectorRef,
     private _clipboard: FsClipboard,
+    private _gallery: FsGallery,
   ) { }
+
+  public openPreview(item) {
+    this.config.download(`${this.pathString}/${item.name}`)
+    .subscribe((blob) => {
+      const galleryItem: FsGalleryItem = {
+        url: new File([blob], item.name)
+      };
+  
+      this._gallery.openPreviews([galleryItem], {
+        config: {
+          details: {
+            autoOpen: true,
+          }
+        }
+      });
+    });
+  }
 
   public openDir(path) {
     this._router.navigate([], {
@@ -176,10 +195,19 @@ export class FsFileManagerComponent implements OnInit, OnDestroy {
     return this.path.join('/');
   }
 
-  public download(item) {
+  public download(item: FsGalleryItem) {
     this.config.download(`${this.pathString}/${item.name}`)
-      .subscribe((response) => {
-        window.open(response, 'menubar=no,location=no,resizable=no,scrollbars=no,status=no');
+      .subscribe((file: Blob) => {
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.style.display = 'none';
+        a.href = URL.createObjectURL(file);
+
+        if (item.name) {
+          a.download = item.name;
+        }
+
+        a.click();
       });
   }
 

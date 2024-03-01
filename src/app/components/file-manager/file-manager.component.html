@@ -40,7 +40,9 @@
         </ng-container>
         <ng-container *ngIf="item.type==='file'">
           <mat-icon>{{item.mimeTypeImage ? 'image' : 'insert_drive_file'}}</mat-icon>
-          {{item.name}}
+          <a (click)="openPreview(item)" class="name-container">
+            {{item.name}}
+          </a>
         </ng-container>
       </div>
     </ng-template>

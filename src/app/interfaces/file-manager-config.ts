@@ -7,7 +7,7 @@ export interface FsFileManagerConfig {
   deleteFile: (path: string) => Observable<any>;
   deleteDirectory: (path: string) => Observable<any>;
   createDirectory: (path: string) => Observable<any>;
-  download: (path: string) => Observable<string>;
+  download: (path: string) => Observable<Blob>;
   downloadZip: (path: string) => void;
   upload: (path: string, file: File) => Observable<any>;
 }
