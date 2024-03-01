@@ -46,7 +46,8 @@ export class FsFileManagerComponent implements OnInit, OnDestroy {
     this.config.download(`${this.pathString}/${item.name}`)
     .subscribe((blob) => {
       const galleryItem: FsGalleryItem = {
-        url: new File([blob], item.name)
+        url: new File([blob], item.name),
+        name: item.name,
       };
   
       this._gallery.openPreviews([galleryItem], {
