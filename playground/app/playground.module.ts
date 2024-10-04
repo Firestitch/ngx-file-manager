@@ -42,7 +42,7 @@ const routes: Routes = [
     FsSelectionModule,
     FsExampleModule.forRoot(),
     FsMessageModule.forRoot(),
-    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot(routes, {}),
     FsApiModule.forRoot(),
     FsListModule.forRoot(),
     FsScrollModule.forRoot(),
