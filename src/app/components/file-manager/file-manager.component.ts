@@ -5,7 +5,7 @@ import { MatMiniFabButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 
 import { FsClipboard } from '@firestitch/clipboard';
-import { FsCommonModule } from '@firestitch/common';
+import { FsCommonModule, guid } from '@firestitch/common';
 import { FsDateModule } from '@firestitch/date';
 import { FsFile, FsFileModule } from '@firestitch/file';
 import { FsGallery, FsGalleryItem } from '@firestitch/gallery';
@@ -62,6 +62,7 @@ export class FsFileManagerComponent implements OnInit, OnDestroy {
         const galleryItem: FsGalleryItem = {
           url: new File([blob], item.name),
           name: item.name,
+          guid: guid(),
         };
   
         this._gallery.openPreviews([galleryItem], {
