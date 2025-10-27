@@ -57,6 +57,7 @@
     "@firestitch/example": "^18.0.5",
     "@firestitch/file": "^18.0.2",
     "@firestitch/filter": "^18.0.11",
+    "@firestitch/form": "^18.0.23",
     "@firestitch/gallery": "^18.0.2",
     "@firestitch/html": "^18.0.0",
     "@firestitch/iframe": "^18.0.0",
