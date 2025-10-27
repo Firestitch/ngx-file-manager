@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 import { MatMiniFabButton } from '@angular/material/button';
@@ -34,6 +34,13 @@ import { FsFileManagerConfig } from '../../interfaces/file-manager-config';
   ],
 })
 export class FsFileManagerComponent implements OnInit, OnDestroy {
+  private _prompt = inject(FsPrompt);
+  private _router = inject(Router);
+  private _route = inject(ActivatedRoute);
+  private _cdRef = inject(ChangeDetectorRef);
+  private _clipboard = inject(FsClipboard);
+  private _gallery = inject(FsGallery);
+
 
   @ViewChild(FsListComponent)
   public list: FsListComponent;
@@ -46,15 +53,6 @@ export class FsFileManagerComponent implements OnInit, OnDestroy {
   public listConfig: FsListConfig;
 
   private _destroy$ = new Subject();
-
-  constructor(
-    private _prompt: FsPrompt,
-    private _router: Router,
-    private _route: ActivatedRoute,
-    private _cdRef: ChangeDetectorRef,
-    private _clipboard: FsClipboard,
-    private _gallery: FsGallery,
-  ) { }
 
   public openPreview(item) {
     this.config.download(`${this.pathString}/${item.name}`)
