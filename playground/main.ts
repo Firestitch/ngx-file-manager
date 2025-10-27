@@ -1,26 +1,24 @@
 import { enableProdMode, importProvidersFrom } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 
-import { environment } from './environments/environment';
-import { FS_TRANSFER_HANDLER } from '@firestitch/transfer';
-import { TransferHandler } from './app/handlers/transfer.handler';
-import { FsMessage, FsMessageModule } from '@firestitch/message';
-import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
-import { FsFileManagerModule } from '@firestitch/package';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { FsLabelModule } from '@firestitch/label';
-import { FsSelectionModule } from '@firestitch/selection';
-import { FsExampleModule } from '@firestitch/example';
-import { provideRouter, Routes } from '@angular/router';
-import { ExamplesComponent } from './app/components';
+import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { Routes, provideRouter } from '@angular/router';
 import { FsApiModule } from '@firestitch/api';
-import { FsListModule } from '@firestitch/list';
-import { FsScrollModule } from '@firestitch/scroll';
+import { FsExampleModule } from '@firestitch/example';
 import { FsFileModule } from '@firestitch/file';
-import { DragulaModule } from 'ng2-dragula';
+import { FsLabelModule } from '@firestitch/label';
+import { FsListModule } from '@firestitch/list';
+import { FsMessage, FsMessageModule } from '@firestitch/message';
+import { FsFileManagerModule } from '@firestitch/package';
+import { FsScrollModule } from '@firestitch/scroll';
+import { FsSelectionModule } from '@firestitch/selection';
+import { FS_TRANSFER_HANDLER } from '@firestitch/transfer';
 import { AppComponent } from './app/app.component';
+import { ExamplesComponent } from './app/components';
+import { TransferHandler } from './app/handlers/transfer.handler';
+import { environment } from './environments/environment';
 
 const routes: Routes = [
   { path: '', component: ExamplesComponent },
@@ -34,7 +32,7 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
     providers: [
-        importProvidersFrom(BrowserModule, FsFileManagerModule.forRoot(), FormsModule, FsLabelModule, FsSelectionModule, FsExampleModule.forRoot(), FsMessageModule.forRoot(), FsApiModule.forRoot(), FsListModule.forRoot(), FsScrollModule.forRoot(), FsFileModule.forRoot(), DragulaModule.forRoot()),
+        importProvidersFrom(BrowserModule, FsFileManagerModule.forRoot(), FormsModule, FsLabelModule, FsSelectionModule, FsExampleModule.forRoot(), FsMessageModule.forRoot(), FsApiModule.forRoot(), FsListModule.forRoot(), FsScrollModule.forRoot(), FsFileModule.forRoot()),
         {
             provide: FS_TRANSFER_HANDLER,
             useClass: TransferHandler,

@@ -79,7 +79,6 @@
     "@firestitch/style": "^18.0.54",
     "@firestitch/transfer": "^18.0.0",
     "lodash-es": "^4.17.15",
-    "ng2-dragula": "^2.1.0",
     "rxjs": "^7.5.6",
     "typescript": "5.4.5",
     "zone.js": "~0.14.10"
