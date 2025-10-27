@@ -1,10 +1,15 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
+import { MatMiniFabButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+
 import { FsClipboard } from '@firestitch/clipboard';
-import { FsFile } from '@firestitch/file';
+import { FsCommonModule } from '@firestitch/common';
+import { FsDateModule } from '@firestitch/date';
+import { FsFile, FsFileModule } from '@firestitch/file';
 import { FsGallery, FsGalleryItem } from '@firestitch/gallery';
-import { FsListComponent, FsListConfig } from '@firestitch/list';
+import { FsListComponent, FsListConfig, FsListModule } from '@firestitch/list';
 import { FsPrompt } from '@firestitch/prompt';
 
 import { Subject } from 'rxjs';
@@ -18,6 +23,15 @@ import { FsFileManagerConfig } from '../../interfaces/file-manager-config';
   templateUrl: './file-manager.component.html',
   styleUrls: ['./file-manager.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    MatIcon,
+    FsFileModule,
+    MatMiniFabButton,
+    FsListModule,
+    FsDateModule,
+    FsCommonModule,
+  ],
 })
 export class FsFileManagerComponent implements OnInit, OnDestroy {
 
@@ -44,20 +58,20 @@ export class FsFileManagerComponent implements OnInit, OnDestroy {
 
   public openPreview(item) {
     this.config.download(`${this.pathString}/${item.name}`)
-    .subscribe((blob) => {
-      const galleryItem: FsGalleryItem = {
-        url: new File([blob], item.name),
-        name: item.name,
-      };
+      .subscribe((blob) => {
+        const galleryItem: FsGalleryItem = {
+          url: new File([blob], item.name),
+          name: item.name,
+        };
   
-      this._gallery.openPreviews([galleryItem], {
-        config: {
-          details: {
-            autoOpen: true,
-          }
-        }
+        this._gallery.openPreviews([galleryItem], {
+          config: {
+            details: {
+              autoOpen: true,
+            },
+          },
+        });
       });
-    });
   }
 
   public openDir(path) {
@@ -98,7 +112,7 @@ export class FsFileManagerComponent implements OnInit, OnDestroy {
           label: 'Copy URL',
           show: (item) => item.type === 'file' && item.url,
           click: (item) => {
-            this._clipboard.copy(item.url)
+            this._clipboard.copy(item.url);
           },
         },
         {
@@ -164,13 +178,14 @@ export class FsFileManagerComponent implements OnInit, OnDestroy {
       .pipe(
         switchMap((name) => {
           const dir = `${this.pathString}/${name}`;
+
           return this.config.createDirectory(dir)
             .pipe(
               tap(() => {
                 this.openDir(dir);
-              })
+              }),
             );            
-        })
+        }),
       )
       .subscribe();
   }

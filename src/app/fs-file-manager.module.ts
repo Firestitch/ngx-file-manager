@@ -20,29 +20,25 @@ import { FsFileManagerComponent } from './components/file-manager/file-manager.c
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-
-    MatTreeModule,
-    MatIconModule,
-    MatProgressBarModule,
-    MatButtonModule,
-
-    FsListModule,
-    FsScrollModule,
-    FsSelectionModule,
-    FsMenuModule,
-    FsDateModule,
-    FsPromptModule,
-    FsFileModule,
-    FsCommonModule,
-  ],
-  exports: [
-    FsFileManagerComponent,
-  ],
-  declarations: [
-    FsFileManagerComponent,
-  ],
+    imports: [
+        CommonModule,
+        MatTreeModule,
+        MatIconModule,
+        MatProgressBarModule,
+        MatButtonModule,
+        FsListModule,
+        FsScrollModule,
+        FsSelectionModule,
+        FsMenuModule,
+        FsDateModule,
+        FsPromptModule,
+        FsFileModule,
+        FsCommonModule,
+        FsFileManagerComponent,
+    ],
+    exports: [
+        FsFileManagerComponent,
+    ],
 })
 export class FsFileManagerModule {
   public static forRoot(): ModuleWithProviders<FsFileManagerModule> {

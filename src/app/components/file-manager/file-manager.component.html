@@ -1,49 +1,88 @@
 <div class="toolbar">
   <div class="status">
-    <a (click)="openDir('')" href="javascript:;" class="home"><mat-icon>home</mat-icon></a>
-    <div class="root">/</div>
+    <a
+        (click)="openDir('')"
+        href="javascript:;"
+        class="home">
+      <mat-icon>
+        home
+      </mat-icon>
+    </a>
+    <div class="root">
+      /
+    </div>
     <div class="path-parts">
-      <a class="path-part" (click)="fetchPathPart(i)" *ngFor="let pathPart of path; let i = index">{{pathPart}}</a>
+      @for (pathPart of path; track pathPart; let i = $index) {
+        <a
+            class="path-part"
+            (click)="fetchPathPart(i)">
+          {{ pathPart }}
+        </a>
+      }
     </div>
   </div>
-
   <div class="actions">
     <fs-file (select)="selectUpload($event)">
       <button mat-mini-fab>
-        <mat-icon>cloud_upload</mat-icon>
+        <mat-icon>
+          cloud_upload
+        </mat-icon>
       </button>
     </fs-file>
-    <button mat-mini-fab (click)="downloadZip(path.join('/'))">
-      <mat-icon>cloud_download</mat-icon>
+    <button
+        mat-mini-fab
+        (click)="downloadZip(path.join('/'))">
+      <mat-icon>
+        cloud_download
+      </mat-icon>
     </button>
-    <button mat-mini-fab (click)="createDirectory()">
-      <mat-icon>create_new_folder</mat-icon>
+    <button
+        mat-mini-fab
+        (click)="createDirectory()">
+      <mat-icon>
+        create_new_folder
+      </mat-icon>
     </button>
-    <button mat-mini-fab (click)="reload()">
-      <mat-icon>refresh</mat-icon>
+    <button
+        mat-mini-fab
+        (click)="reload()">
+      <mat-icon>
+        refresh
+      </mat-icon>
     </button>
   </div>
 </div>
-
-<fs-list [config]="listConfig" #list>
+<fs-list
+    [config]="listConfig"
+    #list>
   <fs-list-column class="col-name">
     <ng-template fs-list-header>
       Name
     </ng-template>
-    <ng-template fs-list-cell let-item="row">
+    <ng-template
+        fs-list-cell
+        let-item="row">
       <div class="name">
-        <ng-container *ngIf="item.type==='directory'">
-          <mat-icon>folder</mat-icon>
-          <a (click)="openDir(path.join('/') + '/' + item.name)" class="name-container">
-            {{item.name}}
+        @if (item.type==='directory') {
+          <mat-icon>
+            folder
+          </mat-icon>
+          <a
+              (click)="openDir(path.join('/') + '/' + item.name)"
+              class="name-container">
+            {{ item.name }}
           </a>
-        </ng-container>
-        <ng-container *ngIf="item.type==='file'">
-          <mat-icon>{{item.mimeTypeImage ? 'image' : 'insert_drive_file'}}</mat-icon>
-          <a (click)="openPreview(item)" class="name-container">
-            {{item.name}}
+        }
+        @if (item.type==='file') {
+          <mat-icon>
+            {{ item.mimeTypeImage ? 'image' : 'insert_drive_file' }}
+          </mat-icon>
+          <a
+              (click)="openPreview(item)"
+              class="name-container">
+            {{ item.name }}
           </a>
-        </ng-container>
+        }
       </div>
     </ng-template>
   </fs-list-column>
@@ -51,20 +90,24 @@
     <ng-template fs-list-header>
       Size
     </ng-template>
-    <ng-template fs-list-cell let-item="row">
-      <ng-container *ngIf="item.type==='file'">
-        {{item.size | fsFormatBytes}}
-      </ng-container>
+    <ng-template
+        fs-list-cell
+        let-item="row">
+      @if (item.type==='file') {
+        {{ item.size | fsFormatBytes }}
+      }
     </ng-template>
   </fs-list-column>
   <fs-list-column>
     <ng-template fs-list-header>
       Modified
     </ng-template>
-    <ng-template fs-list-cell let-item="row">
-      <ng-container *ngIf="item.type==='file'">
-        {{item.modified | fsDateFormat: 'date-time' }}
-      </ng-container>
+    <ng-template
+        fs-list-cell
+        let-item="row">
+      @if (item.type==='file') {
+        {{ item.modified | fsDateFormat: 'date-time' }}
+      }
     </ng-template>
   </fs-list-column>
 </fs-list>

@@ -8,12 +8,15 @@ import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { FsFileManagerComponent } from 'src/app/components/file-manager';
+import { FsFileManagerComponent as FsFileManagerComponent_1 } from '../../../../src/app/components/file-manager/file-manager.component';
 
 @Component({
-  selector: 'kitchen-sink',
-  templateUrl: './kitchen-sink.component.html',
-  styleUrls: ['./kitchen-sink.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'kitchen-sink',
+    templateUrl: './kitchen-sink.component.html',
+    styleUrls: ['./kitchen-sink.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [FsFileManagerComponent_1],
 })
 export class KitchenSinkComponent {
 

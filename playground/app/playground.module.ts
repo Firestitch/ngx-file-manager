@@ -15,8 +15,8 @@ import { FsSelectionModule } from '@firestitch/selection';
 import { FS_TRANSFER_HANDLER } from '@firestitch/transfer';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { DragulaModule } from 'ng2-dragula';
+
 import { AppComponent } from './app.component';
 import {
   ExamplesComponent,
@@ -24,7 +24,7 @@ import {
 } from './components';
 import { KitchenSinkConfigureComponent } from './components/kitchen-sink-configure';
 import { TransferHandler } from './handlers/transfer.handler';
-import { AppMaterialModule } from './material.module';
+
 
 const routes: Routes = [
   { path: '', component: ExamplesComponent },
@@ -36,7 +36,6 @@ const routes: Routes = [
     BrowserModule,
     FsFileManagerModule.forRoot(),
     BrowserAnimationsModule,
-    AppMaterialModule,
     FormsModule,
     FsLabelModule,
     FsSelectionModule,
@@ -48,13 +47,11 @@ const routes: Routes = [
     FsScrollModule.forRoot(),
     FsFileModule.forRoot(),
     DragulaModule.forRoot(),
-  ],
-  declarations: [
-    AppComponent,
     ExamplesComponent,
     KitchenSinkComponent,
     KitchenSinkConfigureComponent,
   ],
+  declarations: [AppComponent],
   providers: [
     {
       provide: FS_TRANSFER_HANDLER,
